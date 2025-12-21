@@ -1,0 +1,11 @@
+@OelTickets_HostAddress = http://localhost:5110
+
+GET {{OelTickets_HostAddress}}/todos/
+Accept: application/json
+
+###
+
+GET {{OelTickets_HostAddress}}/todos/1
+Accept: application/json
+
+###

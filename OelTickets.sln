@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35828.75
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OelTicketsBackend", "OelTicketsBackend\OelTicketsBackend.csproj", "{89C22392-BFD5-25F2-60D7-221DFA44C17E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OelTickets", "OelTickets\OelTickets.csproj", "{C61A619D-351A-002F-A5BE-9DE73C2BE72B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89C22392-BFD5-25F2-60D7-221DFA44C17E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89C22392-BFD5-25F2-60D7-221DFA44C17E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89C22392-BFD5-25F2-60D7-221DFA44C17E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89C22392-BFD5-25F2-60D7-221DFA44C17E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C61A619D-351A-002F-A5BE-9DE73C2BE72B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C61A619D-351A-002F-A5BE-9DE73C2BE72B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C61A619D-351A-002F-A5BE-9DE73C2BE72B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C61A619D-351A-002F-A5BE-9DE73C2BE72B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {63368A5E-C99A-429D-8DF1-91C68899C87F}
+	EndGlobalSection
+EndGlobal
