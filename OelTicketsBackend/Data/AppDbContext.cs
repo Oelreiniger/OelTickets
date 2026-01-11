@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OelTicketsBackend.Auth;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.OpenApi;
+using OelTicketsBackend.Data;
 
 namespace OelTicketsBackend.Data;
 
@@ -29,7 +32,7 @@ public sealed class AppDbContext : IdentityDbContext<ApplicationUser, IdentityRo
         b.Entity<ProjectMembership>(e =>
         {
             e.ToTable("project_memberships");
-            e.HasKey(x => new { x.ProjectId, x.UserId }); // composite key
+            e.HasKey(x => new { x.ProjectId, x.UserId });
             e.HasOne(x => x.Project).WithMany(p => p.Memberships).HasForeignKey(x => x.ProjectId);
             e.HasOne(x => x.User).WithMany().HasForeignKey(x => x.UserId);
         });
@@ -71,8 +74,8 @@ public sealed class AppDbContext : IdentityDbContext<ApplicationUser, IdentityRo
     }
 }
 
-// Domain entities (put in separate files if you prefer)
-
+// Domain entities 
+//TODO: put in different Files.
 public sealed class Project
 {
     public int Id { get; set; }

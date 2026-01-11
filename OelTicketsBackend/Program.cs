@@ -1,13 +1,13 @@
-using System.Security.Cryptography.Xml;
-using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using OelTicketsBackend.Auth;
 using OelTicketsBackend.Data;
+using OelTicketsBackend.Seeder;
+using System.Text;
+using OelTicketsBackend.Controllers;
 
 //TODO: New Tech Stack with Swagger and ASP.Net.Identity, clean this up.
 var builder = WebApplication.CreateBuilder(args);
@@ -76,20 +76,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-async Task SeedRolesAsync(IServiceProvider sp)
-{
-    using var scope = sp.CreateScope();
-    var roleMgr = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-    foreach (var r in new[] { "Customer", "Dev", "Admin" })
-        if (!await roleMgr.RoleExistsAsync(r))
-            await roleMgr.CreateAsync(new IdentityRole(r));
-}
-
-await SeedRolesAsync(app.Services);
+await DefaultSeeder.SeedDB(app.Services);
 
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
 app.Run();
