@@ -7,7 +7,7 @@ using System.Security.Claims;
 namespace OelTicketsBackend.Controllers;
 
 [ApiController]
-[Route("api/users")]
+[Route("api/user")]
 public class UsersController : ControllerBase
 {
     //TODO: Implement multiple roles

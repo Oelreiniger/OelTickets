@@ -2,9 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OelTicketsBackend.Auth;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.OpenApi;
-using OelTicketsBackend.Data;
 
 namespace OelTicketsBackend.Data;
 
@@ -27,12 +24,15 @@ public sealed class AppDbContext : IdentityDbContext<ApplicationUser, IdentityRo
             e.ToTable("projects");
             e.HasKey(x => x.Id);
             e.Property(x => x.Name).HasMaxLength(200).IsRequired();
+            e.Property(x => x.CreatedAtUtc).IsRequired();
         });
 
         b.Entity<ProjectMembership>(e =>
         {
             e.ToTable("project_memberships");
             e.HasKey(x => new { x.ProjectId, x.UserId });
+            e.Property(x => x.CreatedAtUtc).IsRequired();
+
             e.HasOne(x => x.Project).WithMany(p => p.Memberships).HasForeignKey(x => x.ProjectId);
             e.HasOne(x => x.User).WithMany().HasForeignKey(x => x.UserId);
         });
@@ -42,6 +42,7 @@ public sealed class AppDbContext : IdentityDbContext<ApplicationUser, IdentityRo
             e.ToTable("statuses");
             e.HasKey(x => x.Id);
             e.Property(x => x.Name).HasMaxLength(50).IsRequired();
+            e.Property(x => x.CreatedAtUtc).IsRequired();
         });
 
         b.Entity<Ticket>(e =>
@@ -54,7 +55,6 @@ public sealed class AppDbContext : IdentityDbContext<ApplicationUser, IdentityRo
             e.HasOne(x => x.Project).WithMany(p => p.Tickets).HasForeignKey(x => x.ProjectId);
             e.HasOne(x => x.Status).WithMany().HasForeignKey(x => x.StatusId);
 
-            // creator: restrict delete so deleting a user doesn't delete tickets
             e.HasOne(x => x.CreatedByUser).WithMany().HasForeignKey(x => x.CreatedByUserId)
                 .OnDelete(DeleteBehavior.Restrict);
         });
@@ -74,14 +74,15 @@ public sealed class AppDbContext : IdentityDbContext<ApplicationUser, IdentityRo
     }
 }
 
-// Domain entities 
-//TODO: put in different Files.
 public sealed class Project
 {
     public int Id { get; set; }
     public string Name { get; set; } = "";
     public string? Description { get; set; }
     public bool Archived { get; set; }
+
+    public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
+    public DateTime? DeletedAtUtc { get; set; }
 
     public List<ProjectMembership> Memberships { get; set; } = new();
     public List<Ticket> Tickets { get; set; } = new();
@@ -94,12 +95,18 @@ public sealed class ProjectMembership
 
     public string UserId { get; set; } = "";
     public ApplicationUser User { get; set; } = null!;
+
+    public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
+    public DateTime? DeletedAtUtc { get; set; }
 }
 
 public sealed class Status
 {
     public int Id { get; set; }
     public string Name { get; set; } = "";
+
+    public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
+    public DateTime? DeletedAtUtc { get; set; }
 }
 
 public sealed class Ticket

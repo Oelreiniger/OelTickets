@@ -7,9 +7,7 @@ using OelTicketsBackend.Auth;
 using OelTicketsBackend.Data;
 using OelTicketsBackend.Seeder;
 using System.Text;
-using OelTicketsBackend.Controllers;
 
-//TODO: New Tech Stack with Swagger and ASP.Net.Identity, clean this up.
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();

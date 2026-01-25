@@ -8,13 +8,6 @@ using OelTicketsBackend.Auth;
 
 namespace OelTicketsBackend.Controllers;
 
-
-//TODO:
-//CREATE, DELETE, VIEW Roles
-//CREATE, DELETE, VIEW Projects
-//CREATE, DELETE, VIEW Tickets
-//CREATE, DELETE, VIEW Comments
-
 [ApiController]
 [Route("api/auth")]
 public sealed class AuthController : ControllerBase
