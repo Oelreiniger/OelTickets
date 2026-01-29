@@ -1,15 +1,16 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using OelTickets.Pages.Settings;
 using System.Net.Http;
 using System.Net.Http.Json;
 
 namespace OelTickets.Pages.Login;
 
-public sealed partial class LoginViewModel : ObservableObject
+public sealed partial class LoginViewModel : NavPageVM
 {
     private static readonly HttpClient _http = new()
     {
-        BaseAddress = new Uri("http://localhost:32768/")
+        BaseAddress = new Uri("http://localhost:32770/")
     };
 
     [ObservableProperty]
@@ -53,9 +54,12 @@ public sealed partial class LoginViewModel : ObservableObject
             {
                 return;
             }
+
+            Navigation.Navigate<SettingsPage, SettingsViewModel>();
         }
         catch
         {
+
         }
         finally
         {

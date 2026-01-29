@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace OelTickets.Pages
 {
@@ -11,11 +10,6 @@ namespace OelTickets.Pages
         public LoginPage()
         {
             InitializeComponent();
-        }
-
-        private void GoSettings_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService?.Navigate(new SettingsPage());
         }
     }
 }

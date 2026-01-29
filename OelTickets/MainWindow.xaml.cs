@@ -1,16 +1,19 @@
-﻿using OelTickets.Pages;
-using System.Windows;
+﻿using MahApps.Metro.Controls;
+using OelTickets.Pages;
+using OelTickets.Pages.Login;
+using OelTickets.Services;
 
 namespace OelTickets;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainWindow : Window
+public partial class MainWindow : MetroWindow
 {
     public MainWindow()
     {
         InitializeComponent();
-        MainFrame.Navigate(new LoginPage());
+        FrameNavigationService frame = new FrameNavigationService(MainFrame);
+        frame.Navigate<LoginPage, LoginViewModel>();
     }
 }
