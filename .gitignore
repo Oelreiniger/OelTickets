@@ -416,3 +416,5 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+/OelTicketsBackend/Todo.txt
+/OelTicketsBackend/DB_Diagram.png
